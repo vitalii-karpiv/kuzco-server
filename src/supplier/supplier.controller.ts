@@ -3,6 +3,11 @@ import { SupplierService } from "./supplier.service";
 import { ValidationPipe } from "../common/utils/validation.pipe";
 import { SupplierCreateDtoIn } from "./dto/in/supplier-create";
 import { SupplierCreateDtoOut } from "./dto/out/supplier-create";
+import { SupplierGetDtoOut } from "./dto/out/supplier-get";
+import { SupplierUpdateDtoIn } from "./dto/in/supplier-update";
+import { SupplierUpdateDtoOut } from "./dto/out/supplier-update";
+import { SupplierListDtoIn } from "./dto/in/supplier-list";
+import { SupplierListDtoOut } from "./dto/out/supplier-list";
 
 @Controller("supplier")
 export class SupplierController {
@@ -14,22 +19,24 @@ export class SupplierController {
     return this.supplierService.create(supplierCreateDtoIn);
   }
 
-  // @Get(":id")
-  // get(@Param("id") id: number): Promise<SupplierGetDtoOut> {}
+  @Get(":id")
+  get(@Param("id") id: string): Promise<SupplierGetDtoOut> {
+    return this.supplierService.get(id);
+  }
 
-  // @Delete()
-  // @HttpCode(204)
-  // delete(@Body(new ValidationPipe()) deleteUserInDto: DeleteUserDtoIn): Promise<void> {
-  //   return this.userService.delete(deleteUserInDto);
-  // }
-  //
-  // @Patch()
-  // update(@Body(new ValidationPipe()) updateUserDtoIn: UpdateUserDtoIn): Promise<UpdateUserDtoOut> {
-  //   return this.userService.update(updateUserDtoIn);
-  // }
-  //
-  // @Get()
-  // list(@Body(new ValidationPipe()) listUserInDto: ListUserDtoIn): Promise<ListUserDtoOut> {
-  //   return this.userService.list(listUserInDto);
-  // }
+  @Delete(":id")
+  @HttpCode(204)
+  delete(@Param("id") id: string): Promise<void> {
+    return this.supplierService.delete(id);
+  }
+
+  @Patch()
+  update(@Body(new ValidationPipe()) supplierUpdateDtoIn: SupplierUpdateDtoIn): Promise<SupplierUpdateDtoOut> {
+    return this.supplierService.update(supplierUpdateDtoIn);
+  }
+
+  @Get()
+  list(@Body(new ValidationPipe()) listUserInDto: SupplierListDtoIn): Promise<SupplierListDtoOut> {
+    return this.supplierService.list(listUserInDto);
+  }
 }
