@@ -4,12 +4,14 @@ import { SupplierModule } from "./supplier/supplier.module";
 import { APP_PIPE } from "@nestjs/core";
 import { ValidationPipe } from "./common/utils/validation.pipe";
 import { MongooseModule } from "@nestjs/mongoose";
+import { KuzcoModule } from "./kuzco/kuzco.module";
 
 @Module({
   //
   imports: [
     OrderModule,
     SupplierModule,
+    KuzcoModule,
     MongooseModule.forRoot(`mongodb+srv://vitaliakarpiv:RSkauTqBtGMWvrf6@local.zhtudpk.mongodb.net/local_dev`),
   ],
   controllers: [],
