@@ -10,6 +10,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { StateCheckerMiddleware } from "./middleware/state-checker.middleware";
 import { SupplierController } from "./supplier/supplier.controller";
 import { OrderController } from "./order/order.controller";
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { OrderController } from "./order/order.controller";
       isGlobal: true,
       envFilePath: `env/.env.${process.env.NODE_ENV}`,
     }),
+    TagModule,
   ],
   controllers: [],
   providers: [
