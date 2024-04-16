@@ -8,5 +8,6 @@ import { Kuzco, KuzcoSchema } from "./model/kuzco";
   imports: [MongooseModule.forFeature([{ name: Kuzco.name, schema: KuzcoSchema }])],
   controllers: [KuzcoController],
   providers: [KuzcoService],
+  exports: [KuzcoService],
 })
 export class KuzcoModule {}
