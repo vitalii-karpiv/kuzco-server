@@ -23,6 +23,7 @@ export class KuzcoService {
       });
     }
     kuzco = new this.kuzcoModel(kuzcoInitDtoIn);
+    // TODO: initialize basic tags
     return kuzco.save();
   }
 

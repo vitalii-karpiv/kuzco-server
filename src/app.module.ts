@@ -10,13 +10,18 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { StateCheckerMiddleware } from "./middleware/state-checker.middleware";
 import { SupplierController } from "./supplier/supplier.controller";
 import { OrderController } from "./order/order.controller";
-import { TagModule } from './tag/tag.module';
+import { TagModule } from "./tag/tag.module";
+import { UserModule } from "./user/user.module";
+import { TagController } from "./tag/tag.controller";
+import { UserController } from "./user/user.controller";
 
 @Module({
   imports: [
     OrderModule,
     SupplierModule,
     KuzcoModule,
+    TagModule,
+    UserModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -28,7 +33,6 @@ import { TagModule } from './tag/tag.module';
       isGlobal: true,
       envFilePath: `env/.env.${process.env.NODE_ENV}`,
     }),
-    TagModule,
   ],
   controllers: [],
   providers: [
@@ -47,6 +51,6 @@ export class AppModule {
         { path: "kuzco", method: RequestMethod.POST },
         { path: "kuzco", method: RequestMethod.PUT },
       )
-      .forRoutes(SupplierController, OrderController);
+      .forRoutes(SupplierController, OrderController, TagController, UserController);
   }
 }
