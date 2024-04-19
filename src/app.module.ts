@@ -14,6 +14,7 @@ import { TagModule } from "./tag/tag.module";
 import { UserModule } from "./user/user.module";
 import { TagController } from "./tag/tag.controller";
 import { UserController } from "./user/user.controller";
+import { AuthModule } from "./auth/auth.module";
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserController } from "./user/user.controller";
     KuzcoModule,
     TagModule,
     UserModule,
+    AuthModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

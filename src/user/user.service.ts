@@ -55,4 +55,8 @@ export class UserService {
   async delete(id: string) {
     await this.userModel.deleteOne({ _id: id }).exec();
   }
+
+  async getByEmail(email: string): Promise<User> | null {
+    return await this.userModel.findOne({ email }).exec();
+  }
 }
