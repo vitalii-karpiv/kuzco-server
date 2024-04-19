@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Kuzco } from "./model/kuzco";
@@ -13,7 +13,17 @@ export class KuzcoService {
   constructor(@InjectModel(Kuzco.name) private kuzcoModel: Model<Kuzco>) {}
 
   async init(kuzcoInitDtoIn: KuzcoInitDtoIn): Promise<KuzcoInitDtoOut> {
-    const kuzco = new this.kuzcoModel(kuzcoInitDtoIn);
+    let kuzco = await this.kuzcoModel.findOne().exec();
+    if (kuzco) {
+      throw new BadRequestException({
+        message: "Kuzco main instance already initialized",
+        paramMap: {
+          kuzcoState: kuzco.state,
+        },
+      });
+    }
+    kuzco = new this.kuzcoModel(kuzcoInitDtoIn);
+    // TODO: initialize basic tags
     return kuzco.save();
   }
 

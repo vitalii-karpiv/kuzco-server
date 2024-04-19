@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module, RequestMethod } from "@nestjs/common";
 import { OrderModule } from "./order/order.module";
 import { SupplierModule } from "./supplier/supplier.module";
 import { APP_PIPE } from "@nestjs/core";
@@ -7,12 +7,23 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { KuzcoModule } from "./kuzco/kuzco.module";
 import * as process from "process";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { StateCheckerMiddleware } from "./middleware/state-checker.middleware";
+import { SupplierController } from "./supplier/supplier.controller";
+import { OrderController } from "./order/order.controller";
+import { TagModule } from "./tag/tag.module";
+import { UserModule } from "./user/user.module";
+import { TagController } from "./tag/tag.controller";
+import { UserController } from "./user/user.controller";
+import { AuthModule } from "./auth/auth.module";
 
 @Module({
   imports: [
     OrderModule,
     SupplierModule,
     KuzcoModule,
+    TagModule,
+    UserModule,
+    AuthModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -33,4 +44,15 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
     },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(StateCheckerMiddleware)
+      .exclude(
+        { path: "kuzco", method: RequestMethod.GET },
+        { path: "kuzco", method: RequestMethod.POST },
+        { path: "kuzco", method: RequestMethod.PUT },
+      )
+      .forRoutes(SupplierController, OrderController, TagController, UserController);
+  }
+}
