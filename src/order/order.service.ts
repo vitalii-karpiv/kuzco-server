@@ -33,6 +33,7 @@ export class OrderService {
       });
     }
     order.stateHistory.push({ state: state, timestamp: new Date(), initiator: "1-1" });
+    order.state = state;
     await this.orderModel.findOneAndUpdate({ _id: id }, order);
     return await this.orderModel.findOne({ _id: id }).exec();
   }
@@ -55,8 +56,12 @@ export class OrderService {
     return await this.orderModel.findOne({ _id: orderUpdateDtoIn.id }).exec();
   }
 
-  async list(orderListDtoIn: OrderListDtoIn) {
-    const itemList = await this.orderModel.find({}).exec();
+  async list({ state }: OrderListDtoIn) {
+    const filter: any = {};
+    if (state) {
+      filter.state = state;
+    }
+    const itemList = await this.orderModel.find(filter).exec();
     const dtoOut = new OrderListDtoOut();
     dtoOut.itemList = itemList;
     return dtoOut;

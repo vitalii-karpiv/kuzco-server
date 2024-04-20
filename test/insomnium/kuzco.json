@@ -1,0 +1,1025 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-04-20T17:17:52.002Z",
+  "__export_source": "insomnia.desktop.app:v0.2.3",
+  "resources": [
+    {
+      "_id": "req_0fa1f71bf41a4ac096d0ee3056862c39",
+      "parentId": "fld_c3f66241ff864dbb919de361aa3ea8be",
+      "modified": 1713631101929,
+      "created": 1713630783404,
+      "url": "{{ _.baseUri }}/order",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Lot of 3 chromebooks\",\n\t\"ebayUrl\": \"google.com\",\n\t\"shippingUrl\": \"google.com\",\n\t\"dateOfPurchase\": \"2024-04-19\",\n\t\"itemsInLot\": 5,\n\t\"state\": \"inUsa\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1713630783404,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "fld_c3f66241ff864dbb919de361aa3ea8be",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713630779634,
+      "created": 1713630779634,
+      "name": "Order",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1713630779634,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "parentId": null,
+      "modified": 1713553801587,
+      "created": 1713553801587,
+      "name": "Kuzco",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_a84ba08eb97b40c9ad0be4499680333a",
+      "parentId": "fld_c3f66241ff864dbb919de361aa3ea8be",
+      "modified": 1713632474593,
+      "created": 1713632422085,
+      "url": "{{ _.baseUri }}/order/setState",
+      "name": "setState",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"id\": \"6623f49557aa67c871a5dfac\",\n\t\"state\": \"taxPayed\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1713611547795,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_a031a436695a44bb8ab94462189e57e2",
+      "parentId": "fld_c3f66241ff864dbb919de361aa3ea8be",
+      "modified": 1713631345012,
+      "created": 1713631237526,
+      "url": "{{ _.baseUri }}/order",
+      "name": "update",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"id\": \"6623eff4ffe6114f5b1c8e1a\",\n\t\"name\": \"Lot of 5 chromebooks\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1713592312186,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_bd7e3003e62c4357ab82e5d9e4dbee36",
+      "parentId": "fld_c3f66241ff864dbb919de361aa3ea8be",
+      "modified": 1713631367715,
+      "created": 1713631356167,
+      "url": "{{ _.baseUri }}/order/6623eff4ffe6114f5b1c8e1a",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/json",
+        "text": ""
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1713573076577,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_0ce680eb1a784ea29c69174ad8b932a5",
+      "parentId": "fld_c3f66241ff864dbb919de361aa3ea8be",
+      "modified": 1713631374719,
+      "created": 1713631372516,
+      "url": "{{ _.baseUri }}/order/6623eff4ffe6114f5b1c8e1a",
+      "name": "get",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": ""
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1713563458772.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_07c87cd8f65c455fb87ffbddd1b5d559",
+      "parentId": "fld_c3f66241ff864dbb919de361aa3ea8be",
+      "modified": 1713633440696,
+      "created": 1713631378728,
+      "url": "{{ _.baseUri }}/order",
+      "name": "list",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"state\": \"inUsa\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1713558649870.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_0444c7d500a6457f8883645bfaff4134",
+      "parentId": "fld_529d8d6c3ae04e139bf831a74f1958b3",
+      "modified": 1713555676724,
+      "created": 1713553840968,
+      "url": "{{ _.baseUri }}/auth/login",
+      "name": "login",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"vitalia.karpiv@gmail.com\",\n\t\"password\": \"1234\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713553840968,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "fld_529d8d6c3ae04e139bf831a74f1958b3",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713553838108,
+      "created": 1713553838108,
+      "name": "Auth",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1713553838108,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_7a91103eb61d4362808781118df7930d",
+      "parentId": "fld_529d8d6c3ae04e139bf831a74f1958b3",
+      "modified": 1713553935685,
+      "created": 1713553864700,
+      "url": "{{ _.baseUri }}/auth/register",
+      "name": "register",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"vika.karpiv@gmail.com\",\n\t\"password\": \"1234\",\n\t\"name\": \"Vika\",\n\t\"surname\": \"Karpiv\",\n\t\"phone\": \"+380971563855\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713468909188.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_3225e02312b349a59d2e4422695794fa",
+      "parentId": "fld_529d8d6c3ae04e139bf831a74f1958b3",
+      "modified": 1713555767579,
+      "created": 1713553872981,
+      "url": "{{ _.baseUri }}/auth/logout",
+      "name": "logout",
+      "description": "",
+      "method": "POST",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_6efdaf3998e546238d72bdbc2b88ad17",
+          "name": "",
+          "value": "",
+          "description": ""
+        }
+      ],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1713426443298.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_fddd79a3e334427092ba9aaadc04dd8c",
+      "parentId": "fld_529d8d6c3ae04e139bf831a74f1958b3",
+      "modified": 1713553884834,
+      "created": 1713553883090,
+      "url": "{{ _.baseUri }}/refresh",
+      "name": "refresh",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713405210353.875,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_22c1067f316745c4819772653c3ee271",
+      "parentId": "fld_f7b17c41f3774b0d9ed8fe34f2674360",
+      "modified": 1713553801664,
+      "created": 1713553801664,
+      "url": "{{ _.baseUri }}/user",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\": \"vitalia.karpiv@gmail.com\",\n\t\"password\": \"1234\",\n\t\"name\": \"Vitalii\",\n\t\"surname\": \"Karpiv\",\n\t\"phone\": \"+380971563855\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713383977409,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "fld_f7b17c41f3774b0d9ed8fe34f2674360",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713553801661,
+      "created": 1713553801661,
+      "name": "User",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1713383974046,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_ac6d04a9e27e4e6eb826afc67d2b1e52",
+      "parentId": "fld_f7b17c41f3774b0d9ed8fe34f2674360",
+      "modified": 1713553801668,
+      "created": 1713553801668,
+      "url": "{{ _.baseUri }}/user/66202e7a52a53c1c207713c0",
+      "name": "get",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713333117599.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_5d20d5eca8e840c9abb4312f5cddd87b",
+      "parentId": "fld_f7b17c41f3774b0d9ed8fe34f2674360",
+      "modified": 1713553801672,
+      "created": 1713553801672,
+      "url": "{{ _.baseUri }}/user/66202e7a52a53c1c207713c0",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713307687694.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_093f0eb632584efd92279503f66db12c",
+      "parentId": "fld_f7b17c41f3774b0d9ed8fe34f2674360",
+      "modified": 1713553801675,
+      "created": 1713553801675,
+      "url": "{{ _.baseUri }}/user",
+      "name": "update",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"id\": \"66202e7a52a53c1c207713c0\",\n\t\"name\": \"Pasha123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713294972742.375,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_f9f564d460ed4f84b876aaeb0983e34e",
+      "parentId": "fld_138720919dc94b37aa48c4eef4f534c7",
+      "modified": 1713553801653,
+      "created": 1713553801653,
+      "url": "{{ _.baseUri }}/tag",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"parentId\": \"661ea028a0c71289f685d2ff\",\n\t\"type\": \"model\",\n\t\"name\": \"Latitude\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713282257790,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "fld_138720919dc94b37aa48c4eef4f534c7",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713553801651,
+      "created": 1713553801651,
+      "name": "Tag",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1713282254714,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_94b8eca5483e4491a844deb628967717",
+      "parentId": "fld_138720919dc94b37aa48c4eef4f534c7",
+      "modified": 1713554164502,
+      "created": 1713553801657,
+      "url": "{{ _.baseUri }}/tag",
+      "name": "list",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIyYzJkZDQwMmZiYjEwNjhmYWJkMjYiLCJlbWFpbCI6InZpa2Eua2FycGl2QGdtYWlsLmNvbSIsImlhdCI6MTcxMzU1NDE0MSwiZXhwIjoxNzEzNTU1MDQxfQ.JtiZiu3ZtbZQK_9vke5gbtga0Rid6liwpSxqoB0lKSc"
+      },
+      "metaSortKey": -1713245522822,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_62e41a423e274eb08c9e0d77e8da2d77",
+      "parentId": "fld_df479663dad042e8a556e18a23978693",
+      "modified": 1713553801637,
+      "created": 1713553801637,
+      "url": "{{ _.baseUri }}/kuzco",
+      "name": "init",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"state\": \"active\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713208787854,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "fld_df479663dad042e8a556e18a23978693",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713553801635,
+      "created": 1713553801635,
+      "name": "Kuzco",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1713208783265,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_9e832c017cb9403599d9c88bf2a6bc0a",
+      "parentId": "fld_df479663dad042e8a556e18a23978693",
+      "modified": 1713553801645,
+      "created": 1713553801645,
+      "url": "{{ _.baseUri }}/kuzco",
+      "name": "update",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"state\": \"active\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713185068412.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_ee6401ecf1d841f6bd06cb6ea70b9dd8",
+      "parentId": "fld_df479663dad042e8a556e18a23978693",
+      "modified": 1713554176966,
+      "created": 1713553801642,
+      "url": "{{ _.baseUri }}/kuzco",
+      "name": "get",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIyYzJkZDQwMmZiYjEwNjhmYWJkMjYiLCJlbWFpbCI6InZpa2Eua2FycGl2QGdtYWlsLmNvbSIsImlhdCI6MTcxMzU1NDE0MSwiZXhwIjoxNzEzNTU1MDQxfQ.JtiZiu3ZtbZQK_9vke5gbtga0Rid6liwpSxqoB0lKSc"
+      },
+      "metaSortKey": -1713161348971,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_6439a544da094ae4ba6a49f3ed4ca8e8",
+      "parentId": "fld_c61db23073b640a29e5f1af110efad87",
+      "modified": 1713553801611,
+      "created": 1713553801611,
+      "url": "{{ _.baseUri }}/supplier",
+      "name": "create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Test\",\n\t\"phone\": \"+380971563855\",\n\t\"urls\": [\"google.com\"],\n\t\"keywords\": [\"chargers\"]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1713113910088,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "fld_c61db23073b640a29e5f1af110efad87",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713553801608,
+      "created": 1713553801608,
+      "name": "Supplier",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1713113888372,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_91e2dda0386c491291d6aebaf4ad4bc8",
+      "parentId": "fld_c61db23073b640a29e5f1af110efad87",
+      "modified": 1713555756329,
+      "created": 1713553801617,
+      "url": "{{ _.baseUri }}/supplier/661c17ea529c03ebfd58ca88",
+      "name": "get",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1712923312611.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_1751780b868f48b2ad6fc596258e88d7",
+      "parentId": "fld_c61db23073b640a29e5f1af110efad87",
+      "modified": 1713553801621,
+      "created": 1713553801621,
+      "url": "{{ _.baseUri }}/supplier",
+      "name": "update",
+      "description": "",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"id\": \"661c17ea529c03ebfd58ca88\",\n\t\"name\": \"Vitalii\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1712828013873.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_4688f1d520e24128b6e5cb211130a184",
+      "parentId": "fld_c61db23073b640a29e5f1af110efad87",
+      "modified": 1713553801625,
+      "created": 1713553801625,
+      "url": "{{ _.baseUri }}/supplier/661c11c94f3258f53069d663",
+      "name": "delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1712780364504.125,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "req_bb26a86bd96846259f1d59e2ea4b5789",
+      "parentId": "fld_c61db23073b640a29e5f1af110efad87",
+      "modified": 1713557946423,
+      "created": 1713553801629,
+      "url": "{{ _.baseUri }}/supplier",
+      "name": "list",
+      "description": "",
+      "method": "GET",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnium/0.2.3"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{% response 'body', 'req_0444c7d500a6457f8883645bfaff4134', 'b64::JC5hY2Nlc3NUb2tlbg==::46b', 'when-expired', 900 %}"
+      },
+      "metaSortKey": -1712756539819.5625,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "segmentParams": [],
+      "_type": "request"
+    },
+    {
+      "_id": "env_d2fceb206c554c2b9702a0563a444bbb",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713553801589,
+      "created": 1713553801589,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1713113817469,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_a0aace535a994ede8c98dcc48e648de5",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713633365600,
+      "created": 1713553801603,
+      "name": "Default Jar",
+      "cookies": [
+        {
+          "key": "refreshToken",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjIwMzA0Y2U5NWU0M2Q2YjQ2NTdjMjIiLCJlbWFpbCI6InZpdGFsaWEua2FycGl2QGdtYWlsLmNvbSIsImlhdCI6MTcxMzYzMzM2NSwiZXhwIjoxNzE4ODE3MzY1fQ.x22yJEBkJur-lDWMcCUJGDuMIQfIrCn6YdSc0tLEt18",
+          "expires": "2024-05-20T17:16:05.000Z",
+          "maxAge": 2592000,
+          "domain": "localhost",
+          "path": "/",
+          "httpOnly": true,
+          "hostOnly": true,
+          "creation": "2024-04-19T19:15:41.846Z",
+          "lastAccessed": "2024-04-20T17:16:05.600Z",
+          "sameSite": "strict",
+          "id": "8848011000224085"
+        }
+      ],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_e756a9f3477a4eb68e875227e5421879",
+      "parentId": "wrk_949f6062d358461da3d75dec80d10e6b",
+      "modified": 1713553801684,
+      "created": 1713553801683,
+      "fileName": "Kuzco",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    },
+    {
+      "_id": "env_274b7a71fd12447787ac995e7ed9be55",
+      "parentId": "env_d2fceb206c554c2b9702a0563a444bbb",
+      "modified": 1713553801591,
+      "created": 1713553801591,
+      "name": "Local",
+      "data": {
+        "baseUri": "http://localhost:3000"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUri"
+        ]
+      },
+      "color": "#745ee4",
+      "isPrivate": false,
+      "metaSortKey": 1713113829427,
+      "_type": "environment"
+    }
+  ]
+}
