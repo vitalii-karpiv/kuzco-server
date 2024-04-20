@@ -37,4 +37,8 @@ export class TagService {
     }
     return { itemList };
   }
+
+  async get(id: string): Promise<Tag> {
+    return this.tagModel.findOne({ _id: id });
+  }
 }

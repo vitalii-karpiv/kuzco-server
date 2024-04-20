@@ -15,6 +15,9 @@ import { UserModule } from "./user/user.module";
 import { TagController } from "./tag/tag.controller";
 import { UserController } from "./user/user.controller";
 import { AuthModule } from "./auth/auth.module";
+import { LaptopModule } from "./laptop/laptop.module";
+import { IdentityMiddleware } from "./middleware/identity.middleware";
+import { LaptopController } from "./laptop/laptop.controller";
 
 @Module({
   imports: [
@@ -35,6 +38,7 @@ import { AuthModule } from "./auth/auth.module";
       isGlobal: true,
       envFilePath: `env/.env.${process.env.NODE_ENV}`,
     }),
+    LaptopModule,
   ],
   controllers: [],
   providers: [
@@ -53,6 +57,7 @@ export class AppModule {
         { path: "kuzco", method: RequestMethod.POST },
         { path: "kuzco", method: RequestMethod.PUT },
       )
-      .forRoutes(SupplierController, OrderController, TagController, UserController);
+      .forRoutes(SupplierController, OrderController, TagController, UserController, LaptopController);
+    consumer.apply(IdentityMiddleware).forRoutes(OrderController, LaptopController);
   }
 }

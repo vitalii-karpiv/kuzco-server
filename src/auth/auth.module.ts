@@ -10,6 +10,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { RefreshToken, RefreshTokenSchema } from "./model/refresh-token";
 
 @Module({
+  exports: [TokenService],
   controllers: [AuthController],
   providers: [
     AuthService,

@@ -1,27 +1,31 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { Order } from "./model/order.model";
+import { Order } from "./model/order";
 import { OrderCreateDtoIn } from "./dto/in/order-create";
 import { OrderUpdateDtoIn } from "./dto/in/order-update";
 import { OrderListDtoIn } from "./dto/in/order-list";
 import { OrderListDtoOut } from "./dto/out/order-list";
 import { OrderSetStateDtoIn } from "./dto/in/order-set-state";
+import { UserService } from "../user/user.service";
 
 @Injectable()
 export class OrderService {
-  constructor(@InjectModel(Order.name) private orderModel: Model<Order>) {}
+  constructor(
+    @InjectModel(Order.name) private orderModel: Model<Order>,
+    private readonly userService: UserService,
+  ) {}
 
   async create(orderCreateDtoIn: OrderCreateDtoIn) {
-    // TODO: use real initiator
+    const user = await this.getUser(orderCreateDtoIn.userId);
     const order = new this.orderModel({
       ...orderCreateDtoIn,
-      stateHistory: [{ state: orderCreateDtoIn.state, timestamp: new Date(), initiator: "1-1" }],
+      stateHistory: [{ state: orderCreateDtoIn.state, timestamp: new Date(), initiator: user }],
     });
     return order.save();
   }
 
-  async setState({ id, state }: OrderSetStateDtoIn) {
+  async setState({ id, state, userId }: OrderSetStateDtoIn) {
     const order = await this.orderModel.findOne({ _id: id }).exec();
     if (!order) {
       throw new BadRequestException({
@@ -32,7 +36,8 @@ export class OrderService {
         },
       });
     }
-    order.stateHistory.push({ state: state, timestamp: new Date(), initiator: "1-1" });
+    const user = await this.getUser(userId);
+    order.stateHistory.push({ state: state, timestamp: new Date(), initiator: user });
     order.state = state;
     await this.orderModel.findOneAndUpdate({ _id: id }, order);
     return await this.orderModel.findOne({ _id: id }).exec();
@@ -69,5 +74,10 @@ export class OrderService {
 
   async delete(id: string) {
     await this.orderModel.deleteOne({ _id: id }).exec();
+  }
+
+  private async getUser(id: string) {
+    const user = await this.userService.get(id);
+    return `${user.name} ${user.surname}`;
   }
 }

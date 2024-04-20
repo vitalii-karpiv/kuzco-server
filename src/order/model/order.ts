@@ -1,6 +1,6 @@
 import OrderState from "../../common/enum/order-state";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { StateHistoryItem } from "./state-history-item";
+import { StateHistoryItem } from "../../common/domain/state-history-item";
 
 @Schema()
 export class Order {
