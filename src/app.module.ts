@@ -18,6 +18,8 @@ import { AuthModule } from "./auth/auth.module";
 import { LaptopModule } from "./laptop/laptop.module";
 import { IdentityMiddleware } from "./middleware/identity.middleware";
 import { LaptopController } from "./laptop/laptop.controller";
+import { SaleModule } from "./sale/sale.module";
+import { SaleController } from "./sale/sale.controller";
 
 @Module({
   imports: [
@@ -39,6 +41,7 @@ import { LaptopController } from "./laptop/laptop.controller";
       envFilePath: `env/.env.${process.env.NODE_ENV}`,
     }),
     LaptopModule,
+    SaleModule,
   ],
   controllers: [],
   providers: [
@@ -58,6 +61,6 @@ export class AppModule {
         { path: "kuzco", method: RequestMethod.PUT },
       )
       .forRoutes(SupplierController, OrderController, TagController, UserController, LaptopController);
-    consumer.apply(IdentityMiddleware).forRoutes(OrderController, LaptopController);
+    consumer.apply(IdentityMiddleware).forRoutes(OrderController, LaptopController, SaleController);
   }
 }

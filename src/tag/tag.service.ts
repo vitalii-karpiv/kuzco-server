@@ -27,7 +27,7 @@ export class TagService {
   }
 
   async list(tagListDtoIn: TagListDtoIn) {
-    let itemList = [];
+    let itemList: Tag[];
     if (tagListDtoIn.parentId) {
       itemList = await this.tagModel.find({ parentId: tagListDtoIn.parentId }).exec();
     } else if (tagListDtoIn.type) {
@@ -39,6 +39,16 @@ export class TagService {
   }
 
   async get(id: string): Promise<Tag> {
-    return this.tagModel.findOne({ _id: id });
+    const tag = await this.tagModel.findOne({ _id: id });
+    if (!tag) {
+      throw new BadRequestException({
+        stateCode: 404,
+        message: "Tag not found.",
+        paramMap: {
+          id,
+        },
+      });
+    }
+    return tag;
   }
 }
