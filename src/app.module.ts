@@ -20,6 +20,8 @@ import { IdentityMiddleware } from "./middleware/identity.middleware";
 import { LaptopController } from "./laptop/laptop.controller";
 import { SaleModule } from "./sale/sale.module";
 import { SaleController } from "./sale/sale.controller";
+import { FinanceModule } from "./finance/finance.module";
+import { FinanceController } from "./finance/finance.controller";
 
 @Module({
   imports: [
@@ -29,6 +31,9 @@ import { SaleController } from "./sale/sale.controller";
     TagModule,
     UserModule,
     AuthModule,
+    LaptopModule,
+    SaleModule,
+    FinanceModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -40,8 +45,6 @@ import { SaleController } from "./sale/sale.controller";
       isGlobal: true,
       envFilePath: `env/.env.${process.env.NODE_ENV}`,
     }),
-    LaptopModule,
-    SaleModule,
   ],
   controllers: [],
   providers: [
@@ -60,7 +63,15 @@ export class AppModule {
         { path: "kuzco", method: RequestMethod.POST },
         { path: "kuzco", method: RequestMethod.PUT },
       )
-      .forRoutes(SupplierController, OrderController, TagController, UserController, LaptopController);
+      .forRoutes(
+        SupplierController,
+        OrderController,
+        TagController,
+        UserController,
+        LaptopController,
+        SaleController,
+        FinanceController,
+      );
     consumer.apply(IdentityMiddleware).forRoutes(OrderController, LaptopController, SaleController);
   }
 }
