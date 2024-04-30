@@ -9,15 +9,25 @@ import { ExpenseUpdateDtoIn } from "./dto/in/expense-update";
 import { ExpenseUpdateDtoOut } from "./dto/out/expense-update";
 import { ExpenseListDtoOut } from "./dto/out/expense-list";
 import { ExpenseListDtoIn } from "./dto/in/expense-list";
+import { InvestmentCreateDtoIn } from "./dto/in/investment-create";
+import { InvestmentCreateDtoOut } from "./dto/out/investment-create";
+import { InvestmentUpdateDtoIn } from "./dto/in/investment-update";
+import { InvestmentUpdateDtoOut } from "./dto/out/investment-update";
+import { InvestmentListDtoIn } from "./dto/in/investment-list";
+import { InvestmentListDtoOut } from "./dto/out/investment-list";
+import { InvestmentService } from "./investment.service";
 
 @Controller("finance")
 export class FinanceController {
-  constructor(private readonly expenseService: ExpenseService) {}
+  constructor(
+    private readonly expenseService: ExpenseService,
+    private readonly investmentService: InvestmentService,
+  ) {}
 
   @Post("expense")
   @HttpCode(201)
-  expenseCreate(@Body(new ValidationPipe()) kuzcoInitDtoIn: ExpenseCreateDtoIn): Promise<ExpenseCreateDtoOut> {
-    return this.expenseService.create(kuzcoInitDtoIn);
+  expenseCreate(@Body(new ValidationPipe()) expenseCreateDtoIn: ExpenseCreateDtoIn): Promise<ExpenseCreateDtoOut> {
+    return this.expenseService.create(expenseCreateDtoIn);
   }
 
   @Post("expense/setParent")
@@ -40,5 +50,28 @@ export class FinanceController {
   @Delete("expense/:id")
   expenseDelete(@Param("id") id: string): Promise<void> {
     return this.expenseService.delete(id);
+  }
+
+  @Post("investment")
+  @HttpCode(201)
+  investmentCreate(@Body(new ValidationPipe()) kuzcoInitDtoIn: InvestmentCreateDtoIn): Promise<InvestmentCreateDtoOut> {
+    return this.investmentService.create(kuzcoInitDtoIn);
+  }
+
+  @Patch("investment")
+  investmentUpdate(
+    @Body(new ValidationPipe()) investmentSetParentDtoIn: InvestmentUpdateDtoIn,
+  ): Promise<InvestmentUpdateDtoOut> {
+    return this.investmentService.update(investmentSetParentDtoIn);
+  }
+
+  @Get("investment")
+  investmentList(@Body(new ValidationPipe()) investmentListDtoIn: InvestmentListDtoIn): Promise<InvestmentListDtoOut> {
+    return this.investmentService.list(investmentListDtoIn);
+  }
+
+  @Delete("investment/:id")
+  investmentDelete(@Param("id") id: string): Promise<void> {
+    return this.investmentService.delete(id);
   }
 }

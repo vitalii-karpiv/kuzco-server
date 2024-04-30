@@ -7,15 +7,20 @@ import { ExpenseService } from "./expense.service";
 import { KuzcoModule } from "../kuzco/kuzco.module";
 import { OrderModule } from "../order/order.module";
 import { TagModule } from "../tag/tag.module";
+import { UserModule } from "../user/user.module";
+import { InvestmentService } from "./investment.service";
+import { Investment, InvestmentSchema } from "./model/investment";
 
 @Module({
   imports: [
     KuzcoModule,
     OrderModule,
     TagModule,
+    UserModule,
     MongooseModule.forFeature([{ name: Expense.name, schema: ExpenseSchema }]),
+    MongooseModule.forFeature([{ name: Investment.name, schema: InvestmentSchema }]),
   ],
   controllers: [FinanceController],
-  providers: [FinanceService, ExpenseService],
+  providers: [FinanceService, ExpenseService, InvestmentService],
 })
 export class FinanceModule {}

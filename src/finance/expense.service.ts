@@ -98,6 +98,7 @@ export class ExpenseService {
       filter.orderId = orderId;
     }
     if (timeFrom) {
+      // TODO: bug here, we need to be able filter with both from and to
       filter.time = { $gte: timeFrom };
     }
     if (timeTo) {
