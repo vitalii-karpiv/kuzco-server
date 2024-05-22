@@ -14,7 +14,10 @@ import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService, private readonly tokenService: TokenService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly tokenService: TokenService,
+  ) {}
 
   async login({ email, password }: LoginDtoIn) {
     // Retrieve user.
@@ -87,7 +90,7 @@ export class AuthService {
       });
     }
 
-    const user = await this.userService.get(userData.id);
+    const user = await this.userService.get(userData.sub);
 
     // Generate tokens
     const { accessToken, refreshToken: newRefreshToken } = await this.tokenService.generateTokens(user.id, user.email);

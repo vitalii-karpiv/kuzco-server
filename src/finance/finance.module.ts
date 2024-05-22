@@ -10,6 +10,7 @@ import { TagModule } from "../tag/tag.module";
 import { UserModule } from "../user/user.module";
 import { InvestmentService } from "./investment.service";
 import { Investment, InvestmentSchema } from "./model/investment";
+import MonobankService from "./monobank-service";
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { Investment, InvestmentSchema } from "./model/investment";
     MongooseModule.forFeature([{ name: Investment.name, schema: InvestmentSchema }]),
   ],
   controllers: [FinanceController],
-  providers: [FinanceService, ExpenseService, InvestmentService],
+  providers: [FinanceService, ExpenseService, InvestmentService, MonobankService],
 })
 export class FinanceModule {}

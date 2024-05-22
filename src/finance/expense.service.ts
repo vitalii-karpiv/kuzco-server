@@ -2,14 +2,12 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { ExpenseCreateDtoIn } from "./dto/in/expense-create";
 import { Expense } from "./model/expense";
 import { InjectModel } from "@nestjs/mongoose";
-import { Kuzco } from "../kuzco/model/kuzco";
 import { Model } from "mongoose";
 import { KuzcoService } from "../kuzco/kuzco.service";
 import { OrderService } from "../order/order.service";
 import { TagService } from "../tag/tag.service";
 import { ExpenseSetParentDtoIn } from "./dto/in/expense-set-parent";
 import { ExpenseUpdateDtoIn } from "./dto/in/expense-update";
-import e from "express";
 import { ExpenseListDtoIn } from "./dto/in/expense-list";
 import { PageInfo } from "../common/domain/page-info";
 
