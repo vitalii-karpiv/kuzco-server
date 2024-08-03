@@ -4,7 +4,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 export class Expense {
   @Prop({ required: false })
   orderId: string;
-  @Prop({ required: true })
+  @Prop({ required: false })
   type: string;
   @Prop({ required: true })
   amount: number;

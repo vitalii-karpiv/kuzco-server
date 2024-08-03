@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from "@ne
 import { ValidationPipe } from "../common/utils/validation.pipe";
 import { ExpenseCreateDtoIn } from "./dto/in/expense-create";
 import { ExpenseCreateDtoOut } from "./dto/out/expense-create";
-import { ExpenseService } from "./expense.service";
+import { ExpenseService } from "./services/expense.service";
 import { ExpenseSetParentDtoOut } from "./dto/out/expense-set-parent";
 import { ExpenseSetParentDtoIn } from "./dto/in/expense-set-parent";
 import { ExpenseUpdateDtoIn } from "./dto/in/expense-update";
@@ -15,7 +15,8 @@ import { InvestmentUpdateDtoIn } from "./dto/in/investment-update";
 import { InvestmentUpdateDtoOut } from "./dto/out/investment-update";
 import { InvestmentListDtoIn } from "./dto/in/investment-list";
 import { InvestmentListDtoOut } from "./dto/out/investment-list";
-import { InvestmentService } from "./investment.service";
+import { InvestmentService } from "./services/investment.service";
+import { ExpenseSyncDtoIn } from "./dto/in/expense-sync";
 
 @Controller("finance")
 export class FinanceController {
@@ -35,6 +36,11 @@ export class FinanceController {
     @Body(new ValidationPipe()) expenseSetParentDtoIn: ExpenseSetParentDtoIn,
   ): Promise<ExpenseSetParentDtoOut> {
     return this.expenseService.setParent(expenseSetParentDtoIn);
+  }
+
+  @Post("expense/sync")
+  expenseSync(@Body(new ValidationPipe()) expenseSyncDtoIn: ExpenseSyncDtoIn): Promise<void> {
+    return this.expenseService.syncExpenses(expenseSyncDtoIn);
   }
 
   @Patch("expense")

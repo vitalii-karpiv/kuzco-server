@@ -1,15 +1,17 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
-import { ExpenseCreateDtoIn } from "./dto/in/expense-create";
-import { Expense } from "./model/expense";
+import { ExpenseCreateDtoIn } from "../dto/in/expense-create";
+import { Expense } from "../model/expense";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { KuzcoService } from "../kuzco/kuzco.service";
-import { OrderService } from "../order/order.service";
-import { TagService } from "../tag/tag.service";
-import { ExpenseSetParentDtoIn } from "./dto/in/expense-set-parent";
-import { ExpenseUpdateDtoIn } from "./dto/in/expense-update";
-import { ExpenseListDtoIn } from "./dto/in/expense-list";
-import { PageInfo } from "../common/domain/page-info";
+import { KuzcoService } from "../../kuzco/kuzco.service";
+import { OrderService } from "../../order/order.service";
+import { TagService } from "../../tag/tag.service";
+import { ExpenseSetParentDtoIn } from "../dto/in/expense-set-parent";
+import { ExpenseUpdateDtoIn } from "../dto/in/expense-update";
+import { ExpenseListDtoIn } from "../dto/in/expense-list";
+import { PageInfo } from "../../common/domain/page-info";
+import { ExpenseSyncDtoIn } from "../dto/in/expense-sync";
+import MonobankService from "./monobank-service";
 
 @Injectable()
 export class ExpenseService {
@@ -18,6 +20,7 @@ export class ExpenseService {
     private readonly kuzcoService: KuzcoService,
     private readonly orderService: OrderService,
     private readonly tagService: TagService,
+    private readonly monoService: MonobankService,
   ) {}
 
   async create(expenseCreateDtoIn: ExpenseCreateDtoIn) {
@@ -111,5 +114,19 @@ export class ExpenseService {
 
   async delete(id: string) {
     await this.expenseModel.findByIdAndDelete(id);
+  }
+
+  async syncExpenses({ from, to }: ExpenseSyncDtoIn) {
+    const monoExpenses = await this.monoService.fetchExpenses(from, to);
+
+    for (const payment of monoExpenses) {
+      const expense = await this.expenseModel.findOne({ time: payment.time }).exec();
+      if (!expense) {
+        const exp = new Expense();
+        exp.amount = payment.amount;
+        exp.time = payment.time;
+        await new this.expenseModel(exp).save();
+      }
+    }
   }
 }

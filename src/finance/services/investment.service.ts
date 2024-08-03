@@ -1,11 +1,11 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { UserService } from "../user/user.service";
-import { Investment } from "./model/investment";
-import { InvestmentCreateDtoIn } from "./dto/in/investment-create";
-import { InvestmentUpdateDtoIn } from "./dto/in/investment-update";
-import { InvestmentListDtoIn } from "./dto/in/investment-list";
+import { UserService } from "../../user/user.service";
+import { Investment } from "../model/investment";
+import { InvestmentCreateDtoIn } from "../dto/in/investment-create";
+import { InvestmentUpdateDtoIn } from "../dto/in/investment-update";
+import { InvestmentListDtoIn } from "../dto/in/investment-list";
 
 @Injectable()
 export class InvestmentService {
