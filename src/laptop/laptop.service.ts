@@ -85,10 +85,13 @@ export class LaptopService {
     return await this.laptopModel.findOne({ _id: laptopUpdateDtoIn.id }).exec();
   }
 
-  async list({ state }: LaptopListDtoIn) {
+  async list({ state, orderId }: LaptopListDtoIn) {
     const filter: any = {};
     if (state) {
       filter.state = state;
+    }
+    if (orderId) {
+      filter.orderId = orderId;
     }
     const itemList = await this.laptopModel.find(filter).exec();
     return {

@@ -9,7 +9,6 @@ import { LaptopUpdateDtoIn } from "./dto/in/laptop-update";
 import { LaptopUpdateDtoOut } from "./dto/out/laptop-update";
 import { LaptopListDtoIn } from "./dto/in/laptop-list";
 import { LaptopListDtoOut } from "./dto/out/laptop-list";
-import { OrderGetDtoOut } from "../order/dto/out/order-get";
 import { LaptopGetDtoOut } from "./dto/out/laptop-get";
 
 @Controller("laptop")
@@ -32,7 +31,8 @@ export class LaptopController {
     return this.laptopService.update(laptopUpdateDtoIn);
   }
 
-  @Get()
+  @Post("list")
+  @HttpCode(200)
   list(@Body(new ValidationPipe()) laptopListDtoIn: LaptopListDtoIn): Promise<LaptopListDtoOut> {
     return this.laptopService.list(laptopListDtoIn);
   }

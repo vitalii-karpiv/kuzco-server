@@ -48,7 +48,8 @@ export class FinanceController {
     return this.expenseService.update(expenseSetParentDtoIn);
   }
 
-  @Get("expense")
+  @Post("expense/list")
+  @HttpCode(200)
   expenseList(@Body(new ValidationPipe()) expenseListDtoIn: ExpenseListDtoIn): Promise<ExpenseListDtoOut> {
     return this.expenseService.list(expenseListDtoIn);
   }

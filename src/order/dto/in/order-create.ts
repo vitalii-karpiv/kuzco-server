@@ -10,6 +10,7 @@ export class OrderCreateDtoIn extends BaseDto {
   ebayUrl: string;
   @IsString()
   @IsUrl()
+  @IsOptional()
   shippingUrl: string;
   @IsDateString()
   dateOfPurchase: Date;

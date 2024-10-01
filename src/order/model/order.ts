@@ -10,7 +10,7 @@ export class Order {
   name: string;
   @Prop({ required: true })
   ebayUrl: string;
-  @Prop({ required: true })
+  @Prop({ required: false })
   shippingUrl: string;
   @Prop({ required: true })
   dateOfPurchase: Date;
