@@ -16,7 +16,7 @@ import { PageInfo } from "../common/domain/page-info";
 @Injectable()
 export class LaptopService {
   constructor(
-    @InjectModel(Laptop.name) private laptopModel: Model<Laptop>,
+    @InjectModel(Laptop.name) private readonly laptopModel: Model<Laptop>,
     private readonly tagService: TagService,
     private readonly userService: UserService,
   ) {}
@@ -33,6 +33,7 @@ export class LaptopService {
     laptop.submodel = submodel.name;
     laptop.orderId = laptopCreateDtoIn.orderId;
     laptop.code = "test"; // TODO: generate code
+    laptop.name = laptopCreateDtoIn.name;
     laptop.state = LaptopState.NEW;
     laptop.stateHistory = [{ state: LaptopState.NEW, timestamp: new Date(), initiator: user }];
     laptop.techCheck = new TechCheck();

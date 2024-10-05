@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post } from "@nestjs/common";
+import { Body, Controller, HttpCode, Post } from "@nestjs/common";
 import { ValidationPipe } from "../common/utils/validation.pipe";
 import { TagService } from "./tag.service";
 import { TagCreateDtoIn } from "./dto/in/tag-create";
@@ -16,7 +16,8 @@ export class TagController {
     return this.tagService.create(tagCreateDtoIn);
   }
 
-  @Get()
+  @Post("list")
+  @HttpCode(200)
   list(@Body(new ValidationPipe()) tagListDtoIn: TagListDtoIn): Promise<TagListDtoOut> {
     return this.tagService.list(tagListDtoIn);
   }

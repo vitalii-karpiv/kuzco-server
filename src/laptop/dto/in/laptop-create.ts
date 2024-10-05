@@ -1,4 +1,4 @@
-import { IsMongoId } from "class-validator";
+import { IsMongoId, IsString } from "class-validator";
 import { BaseDto } from "../../../common/dto/base-dto";
 
 export class LaptopCreateDtoIn extends BaseDto {
@@ -10,4 +10,6 @@ export class LaptopCreateDtoIn extends BaseDto {
   model: string;
   @IsMongoId()
   submodel: string;
+  @IsString()
+  name: string;
 }

@@ -22,6 +22,7 @@ export class OrderService {
       ...orderCreateDtoIn,
       stateHistory: [{ state: orderCreateDtoIn.state, timestamp: new Date(), initiator: user }],
     });
+    // TODO: create laptops
     return order.save();
   }
 

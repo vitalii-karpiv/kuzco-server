@@ -4,7 +4,6 @@ import { TechCheck } from "./tech-check";
 import { Characteristics } from "./characteristics";
 import { Marketplace } from "./marketplace";
 import { StateHistoryItem } from "../../common/domain/state-history-item";
-import { Order } from "../../order/model/order";
 
 @Schema()
 export class Laptop {
@@ -12,6 +11,8 @@ export class Laptop {
   orderId: string;
   @Prop({ required: true })
   code: string;
+  @Prop({ required: true })
+  name: string;
   @Prop({ required: true })
   brand: string;
   @Prop({ required: true })
