@@ -22,6 +22,7 @@ export class SaleController {
   }
 
   @Post("setState")
+  @HttpCode(200)
   setState(@Body(new ValidationPipe()) saleSetStateDtoIn: SaleSetStateDtoIn): Promise<SaleSetStateDtoOut> {
     return this.saleService.setState(saleSetStateDtoIn);
   }
@@ -31,7 +32,8 @@ export class SaleController {
     return this.saleService.update(saleUpdateDtoIn);
   }
 
-  @Get()
+  @Post("list")
+  @HttpCode(200)
   list(@Body(new ValidationPipe()) saleListDtoIn: SaleListDtoIn): Promise<SaleListDtoOut> {
     return this.saleService.list(saleListDtoIn);
   }

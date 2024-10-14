@@ -23,6 +23,7 @@ import { SaleController } from "./sale/sale.controller";
 import { FinanceModule } from "./finance/finance.module";
 import { FinanceController } from "./finance/finance.controller";
 import { ScheduleModule } from "@nestjs/schedule";
+import { StockModule } from "./stock/stock.module";
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { ScheduleModule } from "@nestjs/schedule";
       envFilePath: `env/.env.${process.env.NODE_ENV}`,
     }),
     ScheduleModule.forRoot({ cronJobs: true }),
+    StockModule,
   ],
   controllers: [],
   providers: [

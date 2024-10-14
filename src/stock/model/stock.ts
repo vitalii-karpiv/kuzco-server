@@ -1,25 +1,24 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { StockType } from "../../common/enum/stock-type";
 import { StateHistoryItem } from "../../common/domain/state-history-item";
-import { SaleState } from "../../common/enum/sale-state";
+import { StockState } from "../../common/enum/stock-state";
 
 @Schema()
-export class Sale {
+export class Stock {
   @Prop({ required: true })
+  name: string;
+  @Prop({ required: true })
+  code: string; // stock type + count
+  @Prop({ required: false })
   laptopId: string;
   @Prop({ required: true })
   price: number;
   @Prop({ required: true })
-  date: Date;
+  type: StockType;
   @Prop({ required: true })
-  source: string;
-  @Prop({ required: true })
-  deliveryType: string;
-  @Prop({ required: false })
-  ttn: string;
-  @Prop({ required: true })
-  state: SaleState;
+  state: StockState;
   @Prop([StateHistoryItem])
   stateHistory: StateHistoryItem[];
 }
 
-export const SaleSchema = SchemaFactory.createForClass(Sale);
+export const StockSchema = SchemaFactory.createForClass(Stock);
