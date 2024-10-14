@@ -24,6 +24,7 @@ import { FinanceModule } from "./finance/finance.module";
 import { FinanceController } from "./finance/finance.controller";
 import { ScheduleModule } from "@nestjs/schedule";
 import { StockModule } from "./stock/stock.module";
+import { StockController } from "./stock/stock.controller";
 
 @Module({
   imports: [
@@ -75,6 +76,7 @@ export class AppModule {
         LaptopController,
         SaleController,
         FinanceController,
+        StockController,
       );
     consumer.apply(IdentityMiddleware).forRoutes(OrderController, LaptopController, SaleController);
   }
