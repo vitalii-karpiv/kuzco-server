@@ -17,8 +17,8 @@ export class StockUpdateDtoIn extends BaseDto {
   laptopId: string;
   @IsEnum(StockType)
   @IsOptional()
-  type: string;
+  type: StockType;
   @IsEnum(StockState)
   @IsOptional()
-  state: string;
+  state: StockState;
 }

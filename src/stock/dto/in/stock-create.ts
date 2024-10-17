@@ -12,7 +12,7 @@ export class StockCreateDtoIn extends BaseDto {
   @IsOptional()
   laptopId: string;
   @IsEnum(StockType)
-  type: string;
+  type: StockType;
   @IsEnum(StockState)
-  state: string;
+  state: StockState;
 }

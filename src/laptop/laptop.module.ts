@@ -10,5 +10,6 @@ import { UserModule } from "../user/user.module";
   imports: [UserModule, MongooseModule.forFeature([{ name: Laptop.name, schema: LaptopSchema }]), TagModule],
   controllers: [LaptopController],
   providers: [LaptopService],
+  exports: [LaptopService],
 })
 export class LaptopModule {}

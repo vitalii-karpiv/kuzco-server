@@ -36,6 +36,7 @@ import { StockController } from "./stock/stock.controller";
     AuthModule,
     LaptopModule,
     SaleModule,
+    StockModule,
     FinanceModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -49,7 +50,6 @@ import { StockController } from "./stock/stock.controller";
       envFilePath: `env/.env.${process.env.NODE_ENV}`,
     }),
     ScheduleModule.forRoot({ cronJobs: true }),
-    StockModule,
   ],
   controllers: [],
   providers: [
@@ -78,6 +78,6 @@ export class AppModule {
         FinanceController,
         StockController,
       );
-    consumer.apply(IdentityMiddleware).forRoutes(OrderController, LaptopController, SaleController);
+    consumer.apply(IdentityMiddleware).forRoutes(OrderController, LaptopController, SaleController, StockController);
   }
 }
