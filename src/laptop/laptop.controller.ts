@@ -10,6 +10,7 @@ import { LaptopUpdateDtoOut } from "./dto/out/laptop-update";
 import { LaptopListDtoIn } from "./dto/in/laptop-list";
 import { LaptopListDtoOut } from "./dto/out/laptop-list";
 import { LaptopGetDtoOut } from "./dto/out/laptop-get";
+import { LaptopGetDescription } from "./dto/out/laptop-get-description";
 
 @Controller("laptop")
 export class LaptopController {
@@ -40,5 +41,10 @@ export class LaptopController {
   @Get(":id")
   get(@Param("id") id: string): Promise<LaptopGetDtoOut> {
     return this.laptopService.get(id);
+  }
+
+  @Get("description/:id")
+  getDescription(@Param("id") id: string): Promise<LaptopGetDescription> {
+    return this.laptopService.getDescription(id);
   }
 }

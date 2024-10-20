@@ -115,6 +115,15 @@ export class LaptopService {
     return laptop;
   }
 
+  async getDescription(id: string) {
+    const laptop = await this.laptopModel.findOne({ _id: id }).exec();
+    return {
+      olx: this.prepareOlxDescription(laptop),
+      inst: this.prepareInstDescription(laptop),
+      telegram: this.prepareTelegramDescription(laptop),
+    };
+  }
+
   private async verifyTag(id: string) {
     // TODO: add check on parent
     const tag = await this.tagService.get(id);
@@ -133,5 +142,60 @@ export class LaptopService {
   private async getUser(id: string) {
     const user = await this.userService.get(id);
     return `${user.name} ${user.surname}`;
+  }
+
+  private prepareOlxDescription(laptop: Laptop) {
+    return `
+    ${laptop.brand} ${laptop.model} ${laptop.submodel} 
+    Характеристики:
+
+    Процесор: ${laptop.characteristics.processor}
+    Відеокарта: ${laptop.characteristics.videocard}
+    RAM/SSD: ${laptop.characteristics.ram} / ${laptop.characteristics.ssd}
+    Екран: ${laptop.characteristics.screen}
+    Батарея: ${laptop.characteristics.battery}
+    
+    Гарантія: 3 місяці
+    
+    Кожен ноутбук пройшов кваліфікований технічний огляд та сервіс.
+    
+    Доставка замовлень здійснюється будь-яким зручним перевізником: Нова Пошта, Укр Пошта, Meest. Можлива оплата після отримання, повна передоплата або OLX доставка.
+    
+    - У комплекті ноутбук та оригінальний зарядний пристрій
+    - Є можливість зміни конфігурації ноутбука (RAM/SSD)
+    
+    Для КОНСУЛЬТАЦІЇ/ЗАМОВЛЕННЯ пишіть нам в ДІРЕКТ або Viber/Telegram
+    `;
+  }
+
+  private prepareInstDescription(laptop: Laptop) {
+    return `
+    💻 ${laptop.brand} ${laptop.model} ${laptop.submodel} - короткий опис
+
+    Характеристики:
+    
+    ⚙️ ${laptop.characteristics.processor}
+    🚀 ${laptop.characteristics.videocard}
+    💾 ${laptop.characteristics.ram} / ${laptop.characteristics.ssd}
+    🖥️ ${laptop.characteristics.screen}
+    🔋 ${laptop.characteristics.battery}
+    
+    ✅ Гарантія: 3 місяці
+    
+    📦 Доставка замовлень здійснюється будь-яким зручним перевізником: Нова Пошта, Укр Пошта, Meest. Можлива оплата після отримання, або повна передоплата.
+    
+    - У комплекті ноутбук та оригінальний зарядний пристрій
+    - Є можливість зміни конфігурації ноутбука (RAM/SSD)
+    
+    💰 Ціна: ${laptop.sellPrice} грн
+    
+    Для КОНСУЛЬТАЦІЇ/ЗАМОВЛЕННЯ пишіть нам в ДІРЕКТ або Viber/Telegram
+    `;
+  }
+
+  private prepareTelegramDescription(laptop: Laptop) {
+    return `
+    TODO
+    `;
   }
 }

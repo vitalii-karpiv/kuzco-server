@@ -13,4 +13,6 @@ export class Characteristics {
   ports: string[];
   @IsString()
   screen: string;
+  @IsString()
+  battery: string;
 }
