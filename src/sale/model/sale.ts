@@ -6,13 +6,13 @@ import { SaleState } from "../../common/enum/sale-state";
 export class Sale {
   @Prop({ required: true })
   laptopId: string;
-  @Prop({ required: true })
+  @Prop({ required: false })
   price: number;
   @Prop({ required: true })
   date: Date;
-  @Prop({ required: true })
+  @Prop({ required: false })
   source: string;
-  @Prop({ required: true })
+  @Prop({ required: false })
   deliveryType: string;
   @Prop({ required: false })
   ttn: string;

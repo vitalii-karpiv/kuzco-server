@@ -1,10 +1,10 @@
 import { LaptopState } from "../../../common/enum/laptop-state";
-import { IsEnum, IsMongoId, IsOptional } from "class-validator";
+import { IsArray, IsMongoId, IsOptional } from "class-validator";
 
 export class LaptopListDtoIn {
-  @IsEnum(LaptopState)
+  @IsArray()
   @IsOptional()
-  state: LaptopState;
+  state: LaptopState[];
   @IsMongoId()
   @IsOptional()
   orderId: string;

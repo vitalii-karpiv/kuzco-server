@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { TagService } from "../tag/tag.service";
 import { UserService } from "../user/user.service";
 import { Sale } from "./model/sale";
 import { SaleCreateDtoIn } from "./dto/in/sale-create";
@@ -15,16 +14,13 @@ import { PageInfo } from "../common/domain/page-info";
 @Injectable()
 export class SaleService {
   constructor(
-    @InjectModel(Sale.name) private saleModel: Model<Sale>,
-    private readonly tagService: TagService,
+    @InjectModel(Sale.name) private readonly saleModel: Model<Sale>,
     private readonly userService: UserService,
   ) {}
 
   async create(saleCreateDtoIn: SaleCreateDtoIn) {
     const sale = { ...saleCreateDtoIn, state: SaleState.NEW, date: new Date(), stateHistory: [] } as Sale;
     const user = await this.getUser(saleCreateDtoIn.userId);
-    const sourceTag = await this.verifyTag(saleCreateDtoIn.source);
-    sale.source = sourceTag.name;
     sale.stateHistory.push({ state: LaptopState.NEW, timestamp: new Date(), initiator: user });
     return new this.saleModel(sale).save();
   }
@@ -95,9 +91,5 @@ export class SaleService {
   private async getUser(id: string) {
     const user = await this.userService.get(id);
     return `${user.name} ${user.surname}`;
-  }
-
-  private async verifyTag(id: string) {
-    return await this.tagService.get(id);
   }
 }
