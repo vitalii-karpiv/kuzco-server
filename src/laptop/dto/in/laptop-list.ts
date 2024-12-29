@@ -8,4 +8,7 @@ export class LaptopListDtoIn {
   @IsMongoId()
   @IsOptional()
   orderId: string;
+  @IsArray()
+  @IsOptional()
+  idList: string[];
 }

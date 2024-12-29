@@ -10,15 +10,18 @@ import { SaleSetStateDtoIn } from "./dto/in/sale-set-state";
 import { SaleUpdateDtoIn } from "./dto/in/sale-update";
 import { SaleListDtoIn } from "./dto/in/sale-list";
 import { PageInfo } from "../common/domain/page-info";
+import { LaptopService } from "../laptop/laptop.service";
 
 @Injectable()
 export class SaleService {
   constructor(
     @InjectModel(Sale.name) private readonly saleModel: Model<Sale>,
     private readonly userService: UserService,
+    private readonly laptopService: LaptopService,
   ) {}
 
   async create(saleCreateDtoIn: SaleCreateDtoIn) {
+    await this.laptopService.get(saleCreateDtoIn.laptopId);
     const sale = { ...saleCreateDtoIn, state: SaleState.NEW, date: new Date(), stateHistory: [] } as Sale;
     const user = await this.getUser(saleCreateDtoIn.userId);
     sale.stateHistory.push({ state: LaptopState.NEW, timestamp: new Date(), initiator: user });
