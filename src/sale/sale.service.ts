@@ -22,6 +22,11 @@ export class SaleService {
 
   async create(saleCreateDtoIn: SaleCreateDtoIn) {
     await this.laptopService.get(saleCreateDtoIn.laptopId);
+    await this.laptopService.setState({
+      id: saleCreateDtoIn.laptopId,
+      state: LaptopState.WAITING_FOR_DELIVERY,
+      userId: saleCreateDtoIn.userId,
+    });
     const sale = { ...saleCreateDtoIn, state: SaleState.NEW, date: new Date(), stateHistory: [] } as Sale;
     const user = await this.getUser(saleCreateDtoIn.userId);
     sale.stateHistory.push({ state: LaptopState.NEW, timestamp: new Date(), initiator: user });
@@ -40,6 +45,13 @@ export class SaleService {
       });
     }
     const user = await this.getUser(userId);
+    if (state === "delivering") {
+      await this.updateLaptop(sale.laptopId, LaptopState.DELIVERING, userId);
+    } else if (state === "done") {
+      await this.updateLaptop(sale.laptopId, LaptopState.DONE, userId);
+    } else if (state === "rejected") {
+      await this.updateLaptop(sale.laptopId, LaptopState.SELLING, userId);
+    }
     sale.state = state;
     sale.stateHistory.push({ state, timestamp: new Date(), initiator: user });
     await this.saleModel.findOneAndUpdate({ _id: id }, sale).exec();
@@ -57,6 +69,11 @@ export class SaleService {
           id,
         },
       });
+    }
+    await this.updateLaptop(saleUpdateDtoIn.laptopId, LaptopState.SELLING, saleUpdateDtoIn.userId);
+    if (saleUpdateDtoIn.laptopId) {
+      await this.laptopService.get(saleUpdateDtoIn.laptopId);
+      await this.updateLaptop(saleUpdateDtoIn.laptopId, LaptopState.WAITING_FOR_DELIVERY, saleUpdateDtoIn.userId);
     }
     await this.saleModel.findOneAndUpdate({ _id: id }, { ...saleUpdateDtoIn }).exec();
     return await this.saleModel.findOne({ _id: id }).exec();
@@ -94,5 +111,13 @@ export class SaleService {
   private async getUser(id: string) {
     const user = await this.userService.get(id);
     return `${user.name} ${user.surname}`;
+  }
+
+  private async updateLaptop(id: string, state: LaptopState, userId: string) {
+    await this.laptopService.setState({
+      id,
+      state,
+      userId,
+    });
   }
 }
